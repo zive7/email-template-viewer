@@ -79,6 +79,20 @@
     private string viewMode = "mobile"; // Default to mobile view
     private int leftWidth = 800;
 
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var sampleEmailPath = Path.Combine(Directory.GetCurrentDirectory(), "sample-email.html");
+            if (File.Exists(sampleEmailPath))
+            {
+                htmlContent = await File.ReadAllTextAsync(sampleEmailPath);
+                previewContent = htmlContent;
+            }
+        }
+        catch { }
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
