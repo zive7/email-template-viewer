@@ -1,10 +1,17 @@
 using EmailTemplateViewer.Components;
+using Blazorise;
+using Blazorise.Bootstrap5;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// Add Blazorise services
+builder.Services
+    .AddBlazorise()
+    .AddBootstrap5Providers();
 
 var app = builder.Build();
 

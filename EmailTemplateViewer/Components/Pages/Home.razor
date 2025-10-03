@@ -4,27 +4,24 @@
 <PageTitle>Email Template Viewer</PageTitle>
 
 <div class="viewer-container">
-    <div class="input-section" style="flex: 0 0 @(leftWidth)px;">
-        <h2>Email Template Viewer</h2>
-        <p class="subtitle">Paste your SendGrid HTML template below to preview it</p>
-        
+    <Splitter Orientation="Orientation.Horizontal">
+        <SplitterSection Size="50">
+            <div class="input-section">
+                <h2>Email Template Viewer</h2>
+                <p class="subtitle">Paste your SendGrid HTML template below to preview it</p>
+                
+                <textarea 
+                    class="html-input" 
+                    @bind="htmlContent" 
+                    placeholder="Paste your HTML email template here..."
+                    rows="20"></textarea>
+                
+                <button class="btn-preview" @onclick="UpdatePreview">Update Preview</button>
+            </div>
+        </SplitterSection>
 
-        <textarea 
-            class="html-input" 
-            @bind="htmlContent" 
-            placeholder="Paste your HTML email template here..."
-            rows="20"></textarea>
-        
-        <button class="btn-preview" @onclick="UpdatePreview">Update Preview</button>
-    </div>
-
-    <div class="resizer" 
-         @onmousedown="StartResize" 
-         @onmousedown:preventDefault="true">
-        <div class="resizer-handle"></div>
-    </div>
-
-    <div class="preview-section">
+        <SplitterSection Size="50">
+            <div class="preview-section">
         <div class="preview-header">
             <h3>Preview</h3>
             <div class="view-switcher">
@@ -70,14 +67,15 @@
                 </div>
             }
         </div>
-    </div>
+            </div>
+        </SplitterSection>
+    </Splitter>
 </div>
 
 @code {
     private string htmlContent = "";
     private string previewContent = "<html><body style='display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; color: #666;'><p>Paste your HTML template and click 'Update Preview' to see the preview here</p></body></html>";
     private string viewMode = "mobile"; // Default to mobile view
-    private int leftWidth = 800;
 
     protected override async Task OnInitializedAsync()
     {
@@ -91,26 +89,6 @@
             }
         }
         catch { }
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JSRuntime.InvokeVoidAsync("initializeResizer");
-        }
-    }
-
-    private async Task StartResize(MouseEventArgs e)
-    {
-        await JSRuntime.InvokeVoidAsync("startResize", e.ClientX, leftWidth);
-    }
-
-    [JSInvokable]
-    public void UpdateWidth(int width)
-    {
-        leftWidth = width;
-        StateHasChanged();
     }
 
     private string GetViewButtonClass(string mode)
@@ -140,5 +118,3 @@
         }
     }
 }
-
-@inject IJSRuntime JSRuntime

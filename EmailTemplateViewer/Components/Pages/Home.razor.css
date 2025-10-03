@@ -1,7 +1,5 @@
 .viewer-container {
-    display: flex;
     height: calc(100vh - 3rem);
-    gap: 1rem;
     padding: 1rem;
     background: #f5f5f5;
 }
@@ -14,7 +12,7 @@
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
-    min-width: 300px;
+    height: 100%;
 }
 
 .input-section h2 {
@@ -66,36 +64,7 @@
     transform: translateY(1px);
 }
 
-.resizer {
-    width: 8px;
-    cursor: col-resize;
-    background: transparent;
-    position: relative;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-}
-
-.resizer:hover {
-    background: #e0e0e0;
-}
-
-.resizer-handle {
-    width: 3px;
-    height: 60px;
-    background: #999;
-    border-radius: 2px;
-    transition: background 0.2s;
-}
-
-.resizer:hover .resizer-handle {
-    background: #7c3aed;
-}
-
 .preview-section {
-    flex: 1;
     display: flex;
     flex-direction: column;
     background: white;
@@ -103,7 +72,7 @@
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: auto;
-    min-width: 400px;
+    height: 100%;
 }
 
 .preview-header {
