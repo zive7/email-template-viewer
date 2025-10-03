@@ -1,5 +1,6 @@
 ﻿@page "/"
 @rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Email Template Viewer</PageTitle>
 
@@ -16,7 +17,40 @@
                     placeholder="Paste your HTML email template here..."
                     rows="20"></textarea>
                 
-                <button class="btn-preview" @onclick="UpdatePreview">Update Preview</button>
+                <div class="action-buttons">
+                    <button class="btn-preview" @onclick="UpdatePreview">Update Preview</button>
+                    <button class="btn-convert" @onclick="ToggleConversionDialog">Generate JSON</button>
+                </div>
+
+                @if (showConversionDialog)
+                {
+                    <div class="conversion-dialog">
+                        <div class="dialog-header">
+                            <h4>Generate JSON File</h4>
+                        </div>
+                        <div class="dialog-body">
+                            <label for="templateName">Template Name:</label>
+                            <input 
+                                type="text" 
+                                id="templateName"
+                                class="template-name-input" 
+                                @bind="templateName" 
+                                placeholder="Enter template name (e.g., welcome-email)" />
+                            <p class="help-text">The JSON key will be: <code>Notification.Engine.TemplateHtmlContent.@(string.IsNullOrWhiteSpace(templateName) ? "{template-name}" : templateName)</code></p>
+                            
+                            @if (!string.IsNullOrWhiteSpace(conversionMessage))
+                            {
+                                <div class="@(conversionSuccess ? "success-message" : "error-message")">
+                                    @conversionMessage
+                                </div>
+                            }
+                        </div>
+                        <div class="dialog-footer">
+                            <button class="btn-secondary" @onclick="ToggleConversionDialog">Cancel</button>
+                            <button class="btn-primary" @onclick="GenerateAndDownloadJson" disabled="@string.IsNullOrWhiteSpace(htmlContent)">Generate & Download</button>
+                        </div>
+                    </div>
+                }
             </div>
         </SplitterSection>
 
@@ -76,6 +110,10 @@
     private string htmlContent = "";
     private string previewContent = "<html><body style='display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; color: #666;'><p>Paste your HTML template and click 'Update Preview' to see the preview here</p></body></html>";
     private string viewMode = "mobile"; // Default to mobile view
+    private bool showConversionDialog = false;
+    private string templateName = "";
+    private string conversionMessage = "";
+    private bool conversionSuccess = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -115,6 +153,64 @@
         else
         {
             previewContent = "<html><body style='display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; color: #666;'><p>No content to preview</p></body></html>";
+        }
+    }
+
+    private void ToggleConversionDialog()
+    {
+        showConversionDialog = !showConversionDialog;
+        if (!showConversionDialog)
+        {
+            conversionMessage = "";
+            templateName = "";
+        }
+    }
+
+    private async Task GenerateAndDownloadJson()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(htmlContent))
+            {
+                conversionMessage = "Please enter HTML content first.";
+                conversionSuccess = false;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(templateName))
+            {
+                conversionMessage = "Please enter a template name.";
+                conversionSuccess = false;
+                return;
+            }
+
+            // Create the JSON term key (same logic as EmailJsonConverter)
+            var term = $"Notification.Engine.TemplateHtmlContent.{templateName.Trim()}";
+
+            // Create JSON object
+            var jsonFlat = new Newtonsoft.Json.Linq.JObject();
+            jsonFlat.Add(term, htmlContent);
+
+            // Serialize to JSON with proper formatting
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(jsonFlat, Newtonsoft.Json.Formatting.Indented);
+
+            // Generate filename
+            var fileName = $"{templateName.Trim()}.json";
+
+            // Download the file using JavaScript interop
+            await JSRuntime.InvokeVoidAsync("downloadFile", fileName, json, "application/json");
+
+            conversionMessage = $"✓ Successfully generated '{fileName}'";
+            conversionSuccess = true;
+
+            // Auto-close dialog after 2 seconds
+            await Task.Delay(2000);
+            ToggleConversionDialog();
+        }
+        catch (Exception ex)
+        {
+            conversionMessage = $"✗ Error: {ex.Message}";
+            conversionSuccess = false;
         }
     }
 }
