@@ -179,11 +179,14 @@
 
     private async Task FormatHtml()
     {
-        if (!string.IsNullOrWhiteSpace(htmlContent))
+        // Get the current value directly from the textarea element via JavaScript
+        var currentValue = await JSRuntime.InvokeAsync<string>("eval", "document.querySelector('.html-input').value");
+        
+        if (!string.IsNullOrWhiteSpace(currentValue))
         {
             try
             {
-                var formatted = await JSRuntime.InvokeAsync<string>("formatHtml", htmlContent);
+                var formatted = await JSRuntime.InvokeAsync<string>("formatHtml", currentValue);
                 if (!string.IsNullOrWhiteSpace(formatted))
                 {
                     htmlContent = formatted;
