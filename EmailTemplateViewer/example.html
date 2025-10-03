@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Email Template</title>
+    <style>
+        /* Reset styles for email compatibility */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f6f9fc;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Main container */
+        .email-wrapper {
+            width: 100%;
+            background-color: #f6f9fc;
+            padding: 40px 0;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Header styles */
+        .email-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px 40px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .email-header .logo {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .email-header .tagline {
+            font-size: 16px;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Content styles */
+        .email-content {
+            padding: 50px 40px;
+        }
+
+        .email-content h1 {
+            color: #1a1a1a;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            line-height: 1.3;
+        }
+
+        .email-content h2 {
+            color: #333333;
+            font-size: 22px;
+            font-weight: 600;
+            margin: 30px 0 15px 0;
+        }
+
+        .email-content p {
+            color: #666666;
+            line-height: 1.7;
+            font-size: 16px;
+            margin: 0 0 16px 0;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        /* Button styles */
+        .button-container {
+            text-align: center;
+            margin: 35px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 16px 40px;
+            background-color: #667eea;
+            color: #ffffff !important;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .button:hover {
+            background-color: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .button-secondary {
+            background-color: #ffffff;
+            color: #667eea !important;
+            border: 2px solid #667eea;
+            box-shadow: none;
+        }
+
+        .button-secondary:hover {
+            background-color: #f6f9fc;
+            transform: translateY(-2px);
+        }
+
+        /* Info box styles */
+        .info-box {
+            background-color: #f6f9fc;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #555555;
+        }
+
+        .info-box.warning {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        .info-box.success {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        /* List styles */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            color: #666666;
+            font-size: 16px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        /* Stats/Cards section */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            gap: 15px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background-color: #f6f9fc;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .label {
+            font-size: 14px;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background-color: #eeeeee;
+            margin: 40px 0;
+        }
+
+        /* Footer styles */
+        .email-footer {
+            background-color: #f6f9fc;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 25px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 12px;
+            padding: 10px 18px;
+            background-color: #ffffff;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #667eea;
+            color: #ffffff;
+        }
+
+        .footer-text {
+            color: #999999;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .footer-links {
+            margin: 20px 0 10px 0;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Table styles for data display */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .data-table th {
+            background-color: #f6f9fc;
+            color: #333333;
+            font-weight: 600;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .data-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eeeeee;
+            color: #666666;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive design */
+        @media only screen and (max-width: 600px) {
+            .email-wrapper {
+                padding: 0;
+            }
+
+            .email-container {
+                border-radius: 0;
+                margin: 0;
+            }
+
+            .email-header {
+                padding: 40px 20px;
+            }
+
+            .email-content {
+                padding: 30px 20px;
+            }
+
+            .email-content h1 {
+                font-size: 24px;
+            }
+
+            .email-content h2 {
+                font-size: 20px;
+            }
+
+            .stats-container {
+                flex-direction: column;
+            }
+
+            .button {
+                display: block;
+                padding: 14px 30px;
+            }
+
+            .social-links a {
+                display: block;
+                margin: 10px auto;
+                max-width: 200px;
+            }
+
+            .email-footer {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .email-wrapper {
+                background-color: #ffffff;
+                padding: 0;
+            }
+
+            .email-container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="email-container">
+            <!-- Header -->
+            <div class="email-header">
+                <div class="logo">Company Name</div>
+                <p class="tagline">Building amazing experiences together</p>
+            </div>
+
+            <!-- Main Content -->
+            <div class="email-content">
+                <p class="greeting">Hello John Doe,</p>
+                
+                <h1>Welcome to Our Platform! 🎉</h1>
+                
+                <p>
+                    We're thrilled to have you on board! Your account has been successfully created, 
+                    and you're now part of a growing community of innovators and creators.
+                </p>
+
+                <p>
+                    This email template is designed to showcase various elements you might need in 
+                    your notification emails. Feel free to use and customize any section based on 
+                    your specific requirements.
+                </p>
+
+                <!-- Call-to-action Button -->
+                <div class="button-container">
+                    <a href="#" class="button">Get Started Now</a>
+                </div>
+
+                <!-- Info Box -->
+                <div class="info-box">
+                    <p>
+                        <strong>📌 Quick Tip:</strong> Make sure to verify your email address within 
+                        24 hours to unlock all features and ensure uninterrupted service.
+                    </p>
+                </div>
+
+                <h2>What's Included</h2>
+                
+                <p>Here are some of the features you now have access to:</p>
+
+                <!-- Feature List -->
+                <ul class="feature-list">
+                    <li>Full access to all premium features</li>
+                    <li>24/7 customer support and assistance</li>
+                    <li>Regular updates and new features</li>
+                    <li>Secure data encryption and privacy</li>
+                    <li>Mobile app access on iOS and Android</li>
+                </ul>
+
+                <!-- Stats Cards -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="number">10K+</div>
+                        <div class="label">Active Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">99.9%</div>
+                        <div class="label">Uptime</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">4.9★</div>
+                        <div class="label">Rating</div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <h2>Account Details</h2>
+
+                <!-- Data Table -->
+                <table class="data-table">
+                    <tr>
+                        <th>Item</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Account Type</td>
+                        <td>Premium</td>
+                    </tr>
+                    <tr>
+                        <td>Subscription Started</td>
+                        <td>October 3, 2025</td>
+                    </tr>
+                    <tr>
+                        <td>User ID</td>
+                        <td>#USER-12345</td>
+                    </tr>
+                    <tr>
+                        <td>Next Billing Date</td>
+                        <td>November 3, 2025</td>
+                    </tr>
+                </table>
+
+                <!-- Success Box -->
+                <div class="info-box success">
+                    <p>
+                        <strong>✓ Account Verified:</strong> Your account has been successfully 
+                        verified and is ready to use!
+                    </p>
+                </div>
+
+                <!-- Secondary CTA -->
+                <div class="button-container">
+                    <a href="#" class="button-secondary">View Dashboard</a>
+                </div>
+
+                <div class="divider"></div>
+
+                <h2>Need Help?</h2>
+                
+                <p>
+                    Our support team is here to help you get the most out of your experience. 
+                    Whether you have questions, feedback, or need assistance, we're just a click away.
+                </p>
+
+                <!-- Warning Box -->
+                <div class="info-box warning">
+                    <p>
+                        <strong>⚠️ Security Note:</strong> We will never ask for your password via 
+                        email. If you receive suspicious emails, please report them to 
+                        security@company.com immediately.
+                    </p>
+                </div>
+
+                <p>
+                    Thank you for choosing us. We're committed to providing you with the best 
+                    possible experience.
+                </p>
+
+                <p style="margin-top: 30px;">
+                    Best regards,<br>
+                    <strong>The Team at Company Name</strong>
+                </p>
+            </div>
+
+            <!-- Footer -->
+            <div class="email-footer">
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Instagram</a>
+                </div>
+
+                <!-- Footer Text -->
+                <p class="footer-text">
+                    © 2025 Company Name, Inc. All rights reserved.
+                </p>
+                <p class="footer-text">
+                    123 Business Street, Suite 100<br>
+                    City, State 12345, United States
+                </p>
+
+                <!-- Footer Links -->
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a> | 
+                    <a href="#">Terms of Service</a> | 
+                    <a href="#">Contact Us</a> | 
+                    <a href="#">Unsubscribe</a>
+                </div>
+
+                <p class="footer-text" style="margin-top: 20px; font-size: 12px;">
+                    You're receiving this email because you created an account with us. 
+                    If you no longer wish to receive these emails, you can 
+                    <a href="#" style="color: #667eea;">unsubscribe here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

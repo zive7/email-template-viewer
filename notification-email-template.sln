@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailTemplateViewer", "EmailTemplateViewer\EmailTemplateViewer.csproj", "{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailJsonConverter", "EmailJsonConverter\EmailJsonConverter.csproj", "{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Debug|x64.Build.0 = Debug|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Debug|x86.Build.0 = Debug|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Release|x64.ActiveCfg = Release|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Release|x64.Build.0 = Release|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Release|x86.ActiveCfg = Release|Any CPU
+		{04AA34F4-8756-3598-4FB2-8AFC4AF9EB3F}.Release|x86.Build.0 = Release|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Debug|x64.Build.0 = Debug|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Debug|x86.Build.0 = Debug|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Release|x64.ActiveCfg = Release|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Release|x64.Build.0 = Release|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Release|x86.ActiveCfg = Release|Any CPU
+		{F42750E5-BBFC-4611-B4B7-55CFDE74C23E}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DE7F760-925C-4B5B-BB94-5BCA512DFF82}
+	EndGlobalSection
+EndGlobal

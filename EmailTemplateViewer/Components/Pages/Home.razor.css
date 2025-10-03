@@ -1,0 +1,248 @@
+.viewer-container {
+    display: flex;
+    height: calc(100vh - 3rem);
+    gap: 1rem;
+    padding: 1rem;
+    background: #f5f5f5;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    min-width: 300px;
+}
+
+.input-section h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.subtitle {
+    margin: 0 0 1.5rem 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.html-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.85rem;
+    resize: vertical;
+    min-height: 300px;
+    margin-bottom: 1rem;
+}
+
+.html-input:focus {
+    outline: none;
+    border-color: #7c3aed;
+}
+
+.btn-preview {
+    padding: 0.75rem 1.5rem;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-preview:hover {
+    background: #6d28d9;
+}
+
+.btn-preview:active {
+    transform: translateY(1px);
+}
+
+.resizer {
+    width: 8px;
+    cursor: col-resize;
+    background: transparent;
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.resizer:hover {
+    background: #e0e0e0;
+}
+
+.resizer-handle {
+    width: 3px;
+    height: 60px;
+    background: #999;
+    border-radius: 2px;
+    transition: background 0.2s;
+}
+
+.resizer:hover .resizer-handle {
+    background: #7c3aed;
+}
+
+.preview-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    min-width: 400px;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.preview-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.view-switcher {
+    display: flex;
+    gap: 0.5rem;
+    background: #f8f9fa;
+    padding: 0.25rem;
+    border-radius: 8px;
+}
+
+.view-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-btn:hover {
+    background: #e9ecef;
+    color: #333;
+}
+
+.view-btn.active {
+    background: #7c3aed;
+    color: white;
+}
+
+.view-btn svg {
+    flex-shrink: 0;
+}
+
+.preview-container {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.preview-frame {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.desktop-view {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.mobile-view {
+    width: 375px;
+    flex-shrink: 0;
+}
+
+.frame-header {
+    background: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.frame-title {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.frame-dimensions {
+    font-size: 0.85rem;
+    color: #666;
+    font-family: monospace;
+}
+
+.preview-iframe {
+    border: none;
+    background: white;
+}
+
+.preview-iframe.desktop {
+    width: 100%;
+    height: 800px;
+}
+
+.preview-iframe.mobile {
+    width: 375px;
+    height: 667px;
+}
+
+@media (max-width: 1400px) {
+    .viewer-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .input-section {
+        flex: none;
+        width: 100%;
+    }
+
+    .preview-section {
+        min-height: 700px;
+    }
+
+    .preview-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .desktop-view {
+        width: 100%;
+    }
+}
+

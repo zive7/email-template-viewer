@@ -1,0 +1,130 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Email Template Viewer</PageTitle>
+
+<div class="viewer-container">
+    <div class="input-section" style="flex: 0 0 @(leftWidth)px;">
+        <h2>Email Template Viewer</h2>
+        <p class="subtitle">Paste your SendGrid HTML template below to preview it</p>
+        
+
+        <textarea 
+            class="html-input" 
+            @bind="htmlContent" 
+            placeholder="Paste your HTML email template here..."
+            rows="20"></textarea>
+        
+        <button class="btn-preview" @onclick="UpdatePreview">Update Preview</button>
+    </div>
+
+    <div class="resizer" 
+         @onmousedown="StartResize" 
+         @onmousedown:preventDefault="true">
+        <div class="resizer-handle"></div>
+    </div>
+
+    <div class="preview-section">
+        <div class="preview-header">
+            <h3>Preview</h3>
+            <div class="view-switcher">
+                <button class="@GetViewButtonClass("mobile")" 
+                        @onclick="SwitchToMobile">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg>
+                    Mobile
+                </button>
+                <button class="@GetViewButtonClass("desktop")" 
+                        @onclick="SwitchToDesktop">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    Desktop
+                </button>
+            </div>
+        </div>
+        <div class="preview-container">
+            @if (viewMode == "desktop")
+            {
+                <div class="preview-frame desktop-view">
+                    <div class="frame-header">
+                        <span class="frame-title">Desktop View</span>
+                        <span class="frame-dimensions">1200px</span>
+                    </div>
+                    <iframe srcdoc="@previewContent" class="preview-iframe desktop"></iframe>
+                </div>
+            }
+            
+            @if (viewMode == "mobile")
+            {
+                <div class="preview-frame mobile-view">
+                    <div class="frame-header">
+                        <span class="frame-title">Mobile View</span>
+                        <span class="frame-dimensions">375px</span>
+                    </div>
+                    <iframe srcdoc="@previewContent" class="preview-iframe mobile"></iframe>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private string htmlContent = "";
+    private string previewContent = "<html><body style='display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; color: #666;'><p>Paste your HTML template and click 'Update Preview' to see the preview here</p></body></html>";
+    private string viewMode = "mobile"; // Default to mobile view
+    private int leftWidth = 800;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initializeResizer");
+        }
+    }
+
+    private async Task StartResize(MouseEventArgs e)
+    {
+        await JSRuntime.InvokeVoidAsync("startResize", e.ClientX, leftWidth);
+    }
+
+    [JSInvokable]
+    public void UpdateWidth(int width)
+    {
+        leftWidth = width;
+        StateHasChanged();
+    }
+
+    private string GetViewButtonClass(string mode)
+    {
+        return viewMode == mode ? "view-btn active" : "view-btn";
+    }
+
+    private void SwitchToMobile()
+    {
+        viewMode = "mobile";
+    }
+
+    private void SwitchToDesktop()
+    {
+        viewMode = "desktop";
+    }
+
+    private void UpdatePreview()
+    {
+        if (!string.IsNullOrWhiteSpace(htmlContent))
+        {
+            previewContent = htmlContent;
+        }
+        else
+        {
+            previewContent = "<html><body style='display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; color: #666;'><p>No content to preview</p></body></html>";
+        }
+    }
+}
+
+@inject IJSRuntime JSRuntime

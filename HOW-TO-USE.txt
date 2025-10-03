@@ -1,0 +1,56 @@
+================================================================================
+  EMAIL TEMPLATE VIEWER - QUICK REFERENCE
+================================================================================
+
+📁 PROJECT LOCATION:
+   C:\Project_Zis\Artio\helper-apps\notification-email-template
+
+🚀 TO START THE APPLICATION:
+   1. Open terminal/command prompt
+   2. Navigate to: cd EmailTemplateViewer
+   3. Run: dotnet run
+   4. Open browser to: https://localhost:5001
+
+📋 TO PREVIEW YOUR SENDGRID EMAIL:
+   1. Copy your entire SendGrid HTML file
+   2. Paste it into the textarea (left side)
+   3. Click "Update Preview" button
+   4. Mobile view appears on the right (always visible)
+   5. Check "Show Desktop View" to see both views
+
+📱 WHAT YOU'LL SEE:
+   ✓ Mobile View (375px) - Always visible on the right
+   ✓ Desktop View (1200px) - Optional, toggle with checkbox
+
+💡 TIPS:
+   • Paste COMPLETE HTML (including <!DOCTYPE>, <html>, etc.)
+   • Use the sample-email.html file to test first
+   • Mobile view is ALWAYS shown (primary focus)
+   • Desktop view is OPTIONAL (toggle on/off as needed)
+   • Click "Update Preview" after pasting new HTML
+
+📂 KEY FILES:
+   • EmailTemplateViewer/sample-email.html - Test this first!
+   • GETTING-STARTED.md - Detailed setup instructions
+   • README.md - Full documentation
+
+🎯 TYPICAL WORKFLOW:
+   1. Start app (dotnet run)
+   2. Open browser (https://localhost:5001)
+   3. Copy your SendGrid HTML
+   4. Paste in textarea
+   5. Click "Update Preview"
+   6. Check mobile view (always visible)
+   7. Toggle desktop view if needed
+   8. Done!
+
+🐛 IF SOMETHING GOES WRONG:
+   • Make sure .NET 8 is installed: dotnet --version
+   • Check if the app built successfully: dotnet build
+   • Try a different port: dotnet run --urls "http://localhost:8080"
+   • See GETTING-STARTED.md for more troubleshooting
+
+================================================================================
+  READY TO START? Run: cd EmailTemplateViewer && dotnet run
+================================================================================
+
